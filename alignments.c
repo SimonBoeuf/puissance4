@@ -58,11 +58,7 @@ int	get_diagonal_number(int row, int col)
 	j = col;
 	map = get_map();
 	player = map->map[row][col];
-	while (i > 0 && map->map[i][j] == player)
-	{
-		i--;
-		j--;
-	}
+	while (i > 0 && map->map[i--][j--] == player);
 	if (map->map[i][j] != player)
 	{
 		i++;

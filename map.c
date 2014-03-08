@@ -63,3 +63,22 @@ int		is_valid(int width, int height)
 {
 	return (!(width < 0 || height < 0 || (width < 4 && height < 4)));
 }
+
+int		get_map_value(void)
+{
+	int		rslt;
+	int		i;
+	int		j;
+
+	rslt = 0;
+	i = -1;
+	while (++i < get_map()->height)
+	{
+		j = -1;
+		while (++j < get_map()->width)
+		{
+			rslt += get_cell_value(i, j);
+		}
+	}
+	return (rslt);
+}

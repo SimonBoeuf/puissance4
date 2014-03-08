@@ -42,10 +42,12 @@ int		is_valid(int width, int height);
 t_map	*init_map(int width, int height, int diff);
 t_map	*get_map(void);
 void	print_map(void);
+int		get_map_value(void);
 
-int		getval(int row, int col, int player);
-int		max(int row, int col, int player, int depth);
-int		min(int row, int col, int player, int depth);
+int		getval(int col, int player);
+int		max(int col, int player, int depth);
+int		min(int col, int player, int depth);
+int		get_cell_value(int row, int col);
 
 int		get_next_line(int const fd, char **line);
 

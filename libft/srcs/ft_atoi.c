@@ -30,6 +30,8 @@ int		ft_atoi(const char *s)
 	while (ft_isdigit(s[i]))
 		i++;
 	i--;
+	if (i == -1)
+		return (i);
 	while (i >= 0 && ft_isdigit(s[i]))
 	{
 		result += (s[i] - 48) * power_of_ten;

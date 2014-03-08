@@ -27,26 +27,26 @@ void	unplay(int row, int col)
 void	comp_play(int player)
 {
 	int		i;
-	int		j;
+	int		val;
 	int		bestval;
 	int		besti;
 	int		bestj;
 
-	ft_putendl("comp");
-	bestval = 0;
-	i = 0;
-	while (i < get_map()->width)
+	val = 0;
+	bestval = -MAXINT;
+	i = -1;
+	while (++i < get_map()->width)
 	{
-		if ((j = is_playable(i)))
+		if ((is_playable(i)))
 		{
-			if (getval(j - 1, i, player) > bestval)
+			val = getval(i, player);
+			if (val > bestval)
 			{
-				bestval = getval(j - 1, i, player);
+				bestval = val;
 				besti = i;
-				bestj = j;
+				bestj = is_playable(i);
 			}
 		}
-		i++;
 	}
 	if (bestval)
 		play(bestj - 1, besti, player);
