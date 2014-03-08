@@ -3,7 +3,6 @@
 t_map	*init_map(int width, int height)
 {
 	int				i;
-	int				j;
 	static t_map	*map = NULL;
 
 	if (map == NULL)
@@ -11,11 +10,12 @@ t_map	*init_map(int width, int height)
 		map = (t_map*)malloc(sizeof(t_map));
 		map->width = width;
 		map->height = height;
-		map->map = (char**)malloc(height);
+		map->map = (char**)malloc(height * sizeof(char*));
 		i = -1;
-		while (++i < width)
+		while (++i < height)
 		{
-			map->map[i] = (char*)ft_strnew(width);
+			map->map[i] = ft_strnew(width + 1);
+			ft_memset(map->map[i], '-', width);
 		}
 	}
 	return (map);
@@ -29,10 +29,29 @@ t_map	*get_map(void)
 void	print_map(void)
 {
 	int		i;
+	int		j;
 	t_map	*map;
 
 	map = get_map();
 	i = -1;
 	while (++i < map->height)
-		ft_putendl(map->map[i]);
+	{
+		ft_putstr(ft_itoa(map->height - i - 1));
+		ft_putchar('\t');
+		j = -1;
+		while (++j < map->width)
+		{
+				ft_putchar(map->map[i][j]);
+				ft_putchar('\t');
+		}
+		ft_putchar('\n');
+	}
+	ft_putchar('\t');
+	j = -1;
+	while (++j < map->width)
+	{
+		ft_putstr(ft_itoa(j));
+		ft_putchar('\t');
+	}
+	ft_putchar('\n');
 }
