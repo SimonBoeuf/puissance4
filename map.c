@@ -55,3 +55,8 @@ void	print_map(void)
 	}
 	ft_putchar('\n');
 }
+
+int		is_valid(int width, int height)
+{
+	return (!(width < 0 || height < 0 || (width < 4 && height < 4)));
+}

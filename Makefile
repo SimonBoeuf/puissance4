@@ -19,6 +19,10 @@ INCLUDE		= ../includes/
 SRCS		= main.c			\
 			  puissance4.c		\
 			  map.c				\
+			  play.c			\
+			  player.c			\
+			  alignments.c		\
+			  val.c				\
 
 OBJS		= $(SRCS:.c=.o)
 
