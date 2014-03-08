@@ -1,6 +1,6 @@
 #include "./includes/puissance4.h"
 
-t_map	*init_map(int width, int height)
+t_map	*init_map(int width, int height, int diff)
 {
 	int				i;
 	static t_map	*map = NULL;
@@ -8,6 +8,9 @@ t_map	*init_map(int width, int height)
 	if (map == NULL)
 	{
 		map = (t_map*)malloc(sizeof(t_map));
+		map->min = MAXINT;
+		map->diff = diff;
+		map->max = 0;
 		map->width = width;
 		map->height = height;
 		map->map = (char**)malloc(height * sizeof(char*));
@@ -23,7 +26,7 @@ t_map	*init_map(int width, int height)
 
 t_map	*get_map(void)
 {
-	return (init_map(0, 0));
+	return (init_map(0, 0, 0));
 }
 
 void	print_map(void)

@@ -32,6 +32,7 @@ void	comp_play(int player)
 	int		besti;
 	int		bestj;
 
+	ft_putendl("comp");
 	bestval = 0;
 	i = 0;
 	while (i < get_map()->width)
@@ -62,7 +63,5 @@ void	player_play(int player)
 		ft_putendl("Please enter a valid column to play");
 		get_next_line(1, &line);
 	}
-	ft_putnbr(row);
-	ft_putnbr(ft_atoi(line));
 	play(row - 1, ft_atoi(line), player);
 }

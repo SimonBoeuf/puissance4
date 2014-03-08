@@ -1,6 +1,6 @@
 #include "./includes/puissance4.h"
 
-void	puissance4(int width, int height)
+void	puissance4(int width, int height, int diff)
 {
 	int		rslt;
 	int		player;
@@ -9,7 +9,7 @@ void	puissance4(int width, int height)
 		ft_putendl("invalid map size");
 	else
 	{
-		init_map(width, height);
+		init_map(width, height, diff);
 		rslt = 0;
 		player = 2;
 		while (!rslt)

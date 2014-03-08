@@ -8,14 +8,19 @@
 # include <time.h>
 # include "../libft/libft.h"
 
+#define MAXINT 2147483647
+
 typedef struct	s_map
 {
 	int		width;
 	int		height;
+	int		diff;
+	int		min;
+	int		max;
 	char	**map;
 }				t_map;
 
-void	puissance4(int width, int height);
+void	puissance4(int width, int height, int diff);
 void	print_rslt(int rslt);
 int		game_is_on(void);
 
@@ -34,11 +39,13 @@ int		get_vertical_number(int row, int col);
 int		get_diagonal_number(int row, int col);
 
 int		is_valid(int width, int height);
-t_map	*init_map(int width, int height);
+t_map	*init_map(int width, int height, int diff);
 t_map	*get_map(void);
 void	print_map(void);
 
 int		getval(int row, int col, int player);
+int		max(int row, int col, int player, int depth);
+int		min(int row, int col, int player, int depth);
 
 int		get_next_line(int const fd, char **line);
 
