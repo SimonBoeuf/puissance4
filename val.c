@@ -33,11 +33,9 @@ int	max(int col, int player, int depth)
 				bestval = val < bestval ? val : bestval;
 			}
 		}
-		//printf("max. depth : %d, col : %d, player : %d, bestval : %d\n", depth, col, player, bestval);
 		unplay(row, col);
 		return (bestval);
 	}
-	//printf("max. depth : %d, col : %d, player : %d, val : %d\n", depth, col, player, get_map_value());
 	rtn = get_map_value();
 	unplay(row, col);
 	return (rtn);
@@ -65,11 +63,9 @@ int	min(int col, int player, int depth)
 				bestval = val > bestval ? val : bestval;
 			}
 		}
-		//printf("min. depth : %d, col : %d, player : %d, bestval : %d\n", depth, col, player, bestval);
 		unplay(row, col);
 		return (bestval);
 	}
-	//printf("min. depth : %d, col : %d, player : %d, val : %d\n", depth, col, player, get_map_value());
 	rtn = get_map_value();
 	unplay(row, col);
 	return (rtn);

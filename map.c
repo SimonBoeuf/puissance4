@@ -47,10 +47,10 @@ void	print_map(void)
 			if (map->map[i][j] == '-')
 				ft_putstr("\033[34m-\033[0m");
 			if (map->map[i][j] == 'R')
-				ft_putstr("\033[31mX\033[0m");
+				ft_putstr("\033[31m◉\033[0m");
 			if (map->map[i][j] == 'Y')
-				ft_putstr("\033[33mO\033[0m");
-			ft_putchar(' ');
+				ft_putstr("\033[33m◉\033[0m");
+			ft_putstr("  ");
 		}
 		ft_putchar('\n');
 	}
@@ -59,7 +59,7 @@ void	print_map(void)
 	while (++j < map->width)
 	{
 		ft_putstr(ft_itoa(j));
-		ft_putchar(' ');
+		ft_putstr("  ");
 	}
 	ft_putchar('\n');
 }
