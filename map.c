@@ -6,7 +6,7 @@
 /*   By: sboeuf <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/09 20:30:11 by sboeuf            #+#    #+#             */
-/*   Updated: 2014/03/09 21:06:45 by sboeuf           ###   ########.fr       */
+/*   Updated: 2014/03/09 22:51:19 by sboeuf           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,24 +54,25 @@ void		print_map(void)
 {
 	int		i;
 	int		j;
-	t_map	*map;
+	char	*s;
 
-	map = get_map();
 	i = -1;
-	while (++i < map->height)
+	while (++i < get_map()->height)
 	{
-		ft_putstr(ft_itoa(map->height - i - 1));
+		ft_putstr(s = ft_itoa(get_map()->height - i - 1));
+		ft_strdel(&s);
 		ft_putchar('\t');
 		j = -1;
-		while (++j < map->width)
-			print_char(map->map[i][j]);
+		while (++j < get_map()->width)
+			print_char(get_map()->map[i][j]);
 		ft_putstr("\n\n");
 	}
 	ft_putchar('\t');
 	j = -1;
-	while (++j < map->width)
+	while (++j < get_map()->width)
 	{
-		ft_putstr(ft_itoa(j));
+		ft_putstr(s = ft_itoa(j));
+		ft_strdel(&s);
 		ft_putchar('\t');
 	}
 	ft_putstr("\n\n");

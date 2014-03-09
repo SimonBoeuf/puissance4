@@ -6,7 +6,7 @@
 /*   By: sboeuf <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/09 20:30:26 by sboeuf            #+#    #+#             */
-/*   Updated: 2014/03/09 22:29:18 by sboeuf           ###   ########.fr       */
+/*   Updated: 2014/03/09 22:45:10 by sboeuf           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,13 +68,15 @@ void	player_play(int player)
 	int		row;
 	char	*line;
 
-	if (get_next_line(1, &line) > 0 )
+	if (get_next_line(1, &line) > 0)
 	{
 		while (!(row = is_playable(ft_atoi(line))))
 		{
 			ft_putendl("Please enter a valid column to play");
+			ft_strdel(&line);
 			get_next_line(1, &line);
 		}
 		play(row - 1, ft_atoi(line), player);
+		ft_strdel(&line);
 	}
 }
