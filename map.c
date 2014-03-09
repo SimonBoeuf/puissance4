@@ -8,7 +8,7 @@ t_map	*init_map(int width, int height, int diff)
 	if (map == NULL)
 	{
 		map = (t_map*)malloc(sizeof(t_map));
-		map->min = MAXINT;
+		map->min = 0;
 		map->diff = diff;
 		map->max = 0;
 		map->width = width;
@@ -44,8 +44,13 @@ void	print_map(void)
 		j = -1;
 		while (++j < map->width)
 		{
-				ft_putchar(map->map[i][j]);
-				ft_putchar('\t');
+			if (map->map[i][j] == '-')
+				ft_putstr("\033[34m-\033[0m");
+			if (map->map[i][j] == 'R')
+				ft_putstr("\033[31mX\033[0m");
+			if (map->map[i][j] == 'Y')
+				ft_putstr("\033[33mO\033[0m");
+			ft_putchar(' ');
 		}
 		ft_putchar('\n');
 	}
@@ -54,7 +59,7 @@ void	print_map(void)
 	while (++j < map->width)
 	{
 		ft_putstr(ft_itoa(j));
-		ft_putchar('\t');
+		ft_putchar(' ');
 	}
 	ft_putchar('\n');
 }

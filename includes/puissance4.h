@@ -8,8 +8,6 @@
 # include <time.h>
 # include "../libft/libft.h"
 
-#define MAXINT 2147483647
-
 typedef struct	s_map
 {
 	int		width;

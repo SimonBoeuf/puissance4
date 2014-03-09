@@ -7,9 +7,10 @@ int	abs(int n)
 
 int	getval(int col, int player)
 {
-	return (max(col, player, 1));
+	return (max(col, player, 0));
 }
 
+#include <stdio.h>
 int	max(int col, int player, int depth)
 {
 	int	i;
@@ -20,7 +21,7 @@ int	max(int col, int player, int depth)
 
 	row = is_playable(col) - 1;
 	play (row, col, player);
-	bestval = -MAXINT / 2;
+	bestval = 100000;
 	if ((!game_is_on()) && depth < get_map()->diff)
 	{
 		i = -1;
@@ -28,13 +29,15 @@ int	max(int col, int player, int depth)
 		{
 			if (is_playable(i))
 			{
-				if (bestval < (val = min(i, player == 1 ? 2 : 1, depth + 1)))
-					bestval = val;
+				val = min(i, player == 1 ? 2 : 1, depth + 1);
+				bestval = val < bestval ? val : bestval;
 			}
 		}
+		//printf("max. depth : %d, col : %d, player : %d, bestval : %d\n", depth, col, player, bestval);
 		unplay(row, col);
 		return (bestval);
 	}
+	//printf("max. depth : %d, col : %d, player : %d, val : %d\n", depth, col, player, get_map_value());
 	rtn = get_map_value();
 	unplay(row, col);
 	return (rtn);
@@ -50,7 +53,7 @@ int	min(int col, int player, int depth)
 
 	row = is_playable(col) - 1;
 	play (row, col, player);
-	bestval = MAXINT / 2;
+	bestval = -100000;
 	if ((!game_is_on()) && depth < get_map()->diff)
 	{
 		i = -1;
@@ -58,13 +61,15 @@ int	min(int col, int player, int depth)
 		{
 			if (is_playable(i))
 			{
-				if (bestval > (val = max(i, player == 1 ? 2 : 1, depth + 1)))
-					bestval = val;
+				val = max(i, player == 1 ? 2 : 1, depth + 1);
+				bestval = val > bestval ? val : bestval;
 			}
 		}
+		//printf("min. depth : %d, col : %d, player : %d, bestval : %d\n", depth, col, player, bestval);
 		unplay(row, col);
 		return (bestval);
 	}
+	//printf("min. depth : %d, col : %d, player : %d, val : %d\n", depth, col, player, get_map_value());
 	rtn = get_map_value();
 	unplay(row, col);
 	return (rtn);
@@ -81,12 +86,12 @@ int	get_cell_value(int row, int col)
 		coeff = 1;
 	if (get_map()->map[row][col] == '-')
 		coeff = 0;
-	if (wins(row, col))
-		return (MAXINT / get_map()->width / get_map()->height * coeff);
+	if (coeff && wins(row, col))
+		return (100000 / get_map()->width / get_map()->height * coeff);
 	rslt = get_map()->width - abs(get_map()->width / 2 - col);
-	rslt += get_horizontal_number(row, col);
-	rslt += get_vertical_number(row, col);
-	rslt += get_diagonal_numbers(row, col);
+	rslt += get_horizontal_number(row, col) * get_map()->width;
+	rslt += get_vertical_number(row, col) * get_map()->width;
+	rslt += get_diagonal_numbers(row, col) * get_map()->width;
 	rslt *= coeff;
 	return (rslt);
 }

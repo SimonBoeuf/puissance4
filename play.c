@@ -33,7 +33,7 @@ void	comp_play(int player)
 	int		bestj;
 
 	val = 0;
-	bestval = -MAXINT;
+	bestval = -100000;
 	i = -1;
 	while (++i < get_map()->width)
 	{
@@ -48,7 +48,7 @@ void	comp_play(int player)
 			}
 		}
 	}
-	if (bestval != -MAXINT)
+	if (bestval != -100000)
 		play(bestj - 1, besti, player);
 	else
 		ft_putendl("An error has occured.");

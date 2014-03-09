@@ -31,7 +31,6 @@ void	puissance4(int width, int height, int diff)
 	
 void	print_rslt(int rslt)
 {
-	print_map();
 	if (rslt == 3)
 		ft_putendl("It's a draw !");
 	else if (rslt == 1)
