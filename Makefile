@@ -6,7 +6,7 @@
 #    By: sboeuf <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/02/09 16:37:03 by sboeuf            #+#    #+#              #
-#    Updated: 2014/02/09 16:37:05 by sboeuf           ###   ########.fr        #
+#    Updated: 2014/03/09 21:08:16 by sboeuf           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,19 +16,22 @@ NAME		= puissance4
 
 INCLUDE		= ../includes/
 
-SRCS		= main.c			\
-			  puissance4.c		\
-			  map.c				\
-			  play.c			\
-			  player.c			\
-			  alignments.c		\
-			  val.c				\
+SRCS		=	main.c				\
+				puissance4.c		\
+				map.c				\
+				play.c				\
+				player.c			\
+				alignments.c		\
+				diagonals.c			\
+				val.c				\
+				misc.c				\
+
 
 OBJS		= $(SRCS:.c=.o)
 
 CFLAGS		= -Wall -Werror -Wextra -g
-CLFLAGS     += -L ./libft -lft
-LDFLAGS 	= -I $(DIR_LIBFT)/includes
+CLFLAGS		+= -L ./libft -lft
+LDFLAGS		= -I $(DIR_LIBFT)/includes
 
 DIR_LIBFT	= ./libft
 

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   puissance4.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sboeuf <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2014/03/09 20:30:38 by sboeuf            #+#    #+#             */
+/*   Updated: 2014/03/09 20:48:01 by sboeuf           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "./includes/puissance4.h"
 
 void	puissance4(int width, int height, int diff)
@@ -28,7 +40,7 @@ void	puissance4(int width, int height, int diff)
 		print_rslt(rslt);
 	}
 }
-	
+
 void	print_rslt(int rslt)
 {
 	if (rslt == 3)

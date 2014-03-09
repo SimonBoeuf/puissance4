@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_get_next_line.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sboeuf <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2014/03/09 20:29:53 by sboeuf            #+#    #+#             */
+/*   Updated: 2014/03/09 20:35:39 by sboeuf           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "./includes/rtv1.h"
 
 static int		get_next_line_2(int const fd, char **line);
@@ -24,8 +36,8 @@ static char		*get_line(char *s)
 static int		get_next_line_2(int const fd, char **line)
 {
 	char			buf[BUFF_SIZE + 1];
-	static	char	*result;
-	static	int		x;
+	static char		*result;
+	static int		x;
 	int				ret;
 
 	if (result != NULL && (ft_strchr(result, '\n') || x))

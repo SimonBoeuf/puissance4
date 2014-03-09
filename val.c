@@ -1,23 +1,28 @@
-#include "./includes/puissance4.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   val.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sboeuf <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2014/03/09 20:30:40 by sboeuf            #+#    #+#             */
+/*   Updated: 2014/03/09 21:07:59 by sboeuf           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-int	abs(int n)
-{
-	return (n > 0 ? n : -n);
-}
+#include "./includes/puissance4.h"
 
 int	getval(int col, int player)
 {
-	return (max(col, player, 0));
+	return (min(col, player, 0, -MAXINT));
 }
 
-#include <stdio.h>
-int	max(int col, int player, int depth)
+int	min(int col, int player, int depth, int maxval)
 {
 	int	i;
 	int	bestval;
 	int	val;
 	int	row;
-	int	rtn;
 
 	row = is_playable(col) - 1;
 	play (row, col, player);
@@ -25,50 +30,49 @@ int	max(int col, int player, int depth)
 	if ((!game_is_on()) && depth < get_map()->diff)
 	{
 		i = -1;
-		while (++i < get_map()->width)
+		while (++i < get_map()->width && bestval > maxval)
 		{
 			if (is_playable(i))
 			{
-				val = min(i, player == 1 ? 2 : 1, depth + 1);
+				val = max(i, player == 1 ? 2 : 1, depth + 1, bestval);
 				bestval = val < bestval ? val : bestval;
 			}
 		}
 		unplay(row, col);
 		return (bestval);
 	}
-	rtn = get_map_value();
+	val = get_map_value();
 	unplay(row, col);
-	return (rtn);
+	return (val);
 }
 
-int	min(int col, int player, int depth)
+int	max(int col, int player, int depth, int minval)
 {
 	int	i;
 	int	bestval;
 	int	val;
 	int	row;
-	int	rtn;
 
 	row = is_playable(col) - 1;
-	play (row, col, player);
+	play(row, col, player);
 	bestval = -100000;
 	if ((!game_is_on()) && depth < get_map()->diff)
 	{
 		i = -1;
-		while (++i < get_map()->width)
+		while (++i < get_map()->width && bestval < minval)
 		{
 			if (is_playable(i))
 			{
-				val = max(i, player == 1 ? 2 : 1, depth + 1);
+				val = min(i, player == 1 ? 2 : 1, depth + 1, bestval);
 				bestval = val > bestval ? val : bestval;
 			}
 		}
 		unplay(row, col);
 		return (bestval);
 	}
-	rtn = get_map_value();
+	val = get_map_value();
 	unplay(row, col);
-	return (rtn);
+	return (val);
 }
 
 int	get_cell_value(int row, int col)
@@ -84,10 +88,29 @@ int	get_cell_value(int row, int col)
 		coeff = 0;
 	if (coeff && wins(row, col))
 		return (100000 / get_map()->width / get_map()->height * coeff);
-	rslt = get_map()->width - abs(get_map()->width / 2 - col);
+	rslt = get_map()->width - ft_abs(get_map()->width / 2 - col);
 	rslt += get_horizontal_number(row, col) * get_map()->width;
 	rslt += get_vertical_number(row, col) * get_map()->width;
 	rslt += get_diagonal_numbers(row, col) * get_map()->width;
 	rslt *= coeff;
+	return (rslt);
+}
+
+int	get_map_value(void)
+{
+	int		rslt;
+	int		i;
+	int		j;
+
+	rslt = 0;
+	i = -1;
+	while (++i < get_map()->height)
+	{
+		j = -1;
+		while (++j < get_map()->width)
+		{
+			rslt += get_cell_value(i, j);
+		}
+	}
 	return (rslt);
 }

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   play.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sboeuf <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2014/03/09 20:30:26 by sboeuf            #+#    #+#             */
+/*   Updated: 2014/03/09 20:47:39 by sboeuf           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "./includes/puissance4.h"
 
 int		is_playable(int col)
@@ -48,10 +60,7 @@ void	comp_play(int player)
 			}
 		}
 	}
-	if (bestval != -100000)
-		play(bestj - 1, besti, player);
-	else
-		ft_putendl("An error has occured.");
+	play(bestj - 1, besti, player);
 }
 
 void	player_play(int player)
