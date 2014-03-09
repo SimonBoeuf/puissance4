@@ -6,7 +6,7 @@
 /*   By: sboeuf <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/09 20:30:40 by sboeuf            #+#    #+#             */
-/*   Updated: 2014/03/09 21:07:59 by sboeuf           ###   ########.fr       */
+/*   Updated: 2014/03/09 22:27:52 by sboeuf           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	min(int col, int player, int depth, int maxval)
 	int	row;
 
 	row = is_playable(col) - 1;
-	play (row, col, player);
+	play(row, col, player);
 	bestval = 100000;
 	if ((!game_is_on()) && depth < get_map()->diff)
 	{
