@@ -48,8 +48,10 @@ void	comp_play(int player)
 			}
 		}
 	}
-	if (bestval)
+	if (bestval != -MAXINT)
 		play(bestj - 1, besti, player);
+	else
+		ft_putendl("An error has occured.");
 }
 
 void	player_play(int player)

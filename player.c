@@ -19,7 +19,7 @@ int		wins(int row, int col)
 		return (player);
 	if (get_vertical_number(row, col) == 4)
 		return (player);
-	if (get_diagonal_number(row, col) == 4)
+	if (get_diagonal_numbers(row, col) == 4)
 		return (player);
 	return (0);
 }

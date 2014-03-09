@@ -20,6 +20,7 @@ int	max(int col, int player, int depth)
 
 	row = is_playable(col) - 1;
 	play (row, col, player);
+	print_map();
 	bestval = -MAXINT / 2;
 	if ((!game_is_on()) && depth < get_map()->diff)
 	{
@@ -50,6 +51,7 @@ int	min(int col, int player, int depth)
 
 	row = is_playable(col) - 1;
 	play (row, col, player);
+	print_map();
 	bestval = MAXINT / 2;
 	if ((!game_is_on()) && depth < get_map()->diff)
 	{
@@ -81,10 +83,12 @@ int	get_cell_value(int row, int col)
 		coeff = 1;
 	if (get_map()->map[row][col] == '-')
 		coeff = 0;
+	if (wins(row, col))
+		return (MAXINT / get_map()->width / get_map()->height);
 	rslt = get_map()->width - abs(get_map()->width / 2 - col);
 	rslt += get_horizontal_number(row, col);
 	rslt += get_vertical_number(row, col);
-	rslt += get_diagonal_number(row, col);
+	rslt += get_diagonal_numbers(row, col);
 	rslt *= coeff;
 	return (rslt);
 }

@@ -36,7 +36,11 @@ int		wins(int row, int col);
 
 int		get_horizontal_number(int row, int col);
 int		get_vertical_number(int row, int col);
-int		get_diagonal_number(int row, int col);
+int		get_diagonal_numbers(int row, int col);
+int		get_diagonal_number1(int row, int col);
+int		get_diagonal_number2(int row, int col);
+int		get_diagonal_number3(int row, int col);
+int		get_diagonal_number4(int row, int col);
 
 int		is_valid(int width, int height);
 t_map	*init_map(int width, int height, int diff);
